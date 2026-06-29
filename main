@@ -1,0 +1,36 @@
+#include <iostream>
+#include <windows.h>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+int main()
+{
+    // Налаштування для української мови
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+    srand(time(0)); // Виправлено: тепер числа дійсно випадкові
+    int secret_number = rand() % 100 + 1;
+    int guess = 0;
+
+    std::cout << "Вітаємо у грі 'Вгадай число'!" << std::endl;
+    std::cout << "Я загадав число від 1 до 100. Спробуй відгадати!" << std::endl;
+
+    while (true) {
+        std::cout << "Введіть ваш варіант: ";
+        std::cin >> guess;
+
+        if (guess > secret_number) {
+            std::cout << "Занадто багато!" << std::endl;
+        }
+        else if (guess < secret_number) { // Виправлено: коректне порівняння
+            std::cout << "Занадто мало!" << std::endl;
+        }
+        else {
+            std::cout << "Вітаю! Ти вгадав число!" << std::endl;
+            break; // Виправлено: вихід із циклу при перемозі
+        }
+    }
+    return 0;
+}
